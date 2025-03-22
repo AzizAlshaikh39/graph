@@ -5,3 +5,70 @@ canvas {
     z-index: -1;
     background: black
   }
+/* General styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+/* Card container */
+.card {
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  border: 2px solid white; /* White border */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px;
+  max-width: 400px;
+  margin: 50px auto; /* Center the card */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Glow effect */
+}
+
+/* Headings */
+h1 {
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
+}
+
+/* Input fields */
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid white;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+  color: white;
+}
+
+/* Buttons */
+button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  background: #007bff; /* Blue background */
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3; /* Darker blue on hover */
+}
+
+/* Error messages */
+.error {
+  color: #ff4444; /* Red color for errors */
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
+}
+
+/* Graph containers */
+.graph {
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
