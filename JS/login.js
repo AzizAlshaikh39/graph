@@ -8,10 +8,8 @@ async function login() {
         document.getElementById('loginError').innerText = 'Please enter both username/email and password.';
         return;
     }
-
     const credentials = btoa(`${username}:${password}`);
     console.log('Credentials:', credentials);
-
     try {
         console.log('Fetching:', 'https://learn.reboot01.com/api/auth/signin');
         console.log('Headers:', {

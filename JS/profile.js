@@ -1,5 +1,18 @@
+document.addEventListener('DOMContentLoaded', () => {
+    fetchUserData();
+});
+
+// Logout function
+function logout() {
+    console.log('Logout button clicked');
+    localStorage.removeItem('jwt');
+    console.log('JWT removed from localStorage:', localStorage.getItem('jwt')); // Should log null
+    window.location.href = 'index.html';
+}
+
+// Fetch user data
 async function fetchUserData() {
-    const jwt = localStorage.getItem('jwt').replace(/^"(.*)"$/, '$1'); // Remove extra quotes
+    const jwt = localStorage.getItem('jwt')?.replace(/^"(.*)"$/, '$1');
     console.log('JWT:', jwt);
 
     if (!jwt) {
@@ -11,11 +24,13 @@ async function fetchUserData() {
     try {
         console.log('Fetching user data...');
         const query = `
-            query {
+            query GetUserData {
                 user {
-                    id
                     login
                     email
+                    firstName
+                    lastName
+                    campus
                 }
             }
         `;
@@ -33,14 +48,14 @@ async function fetchUserData() {
         console.log('GraphQL Response Status:', response.status);
         console.log('GraphQL Response OK:', response.ok);
 
-        const responseBody = await response.text(); // Log the raw response body
+        const responseBody = await response.text();
         console.log('Response Body:', responseBody);
 
         if (!response.ok) {
             throw new Error('Failed to fetch user data');
         }
 
-        const data = JSON.parse(responseBody); // Parse the response body as JSON
+        const data = JSON.parse(responseBody);
         console.log('User Data:', data);
 
         if (data.errors) {
@@ -48,12 +63,8 @@ async function fetchUserData() {
             throw new Error(data.errors[0].message || 'Failed to fetch user data');
         }
 
-        const user = data.data.user[0]; // Access the first user in the array
-        document.getElementById('userData').innerHTML = `
-            <p>ID: ${user.id || 'N/A'}</p>
-            <p>Username: ${user.login || 'N/A'}</p>
-            <p>Email: ${user.email || 'N/A'}</p>
-        `;
+        const user = data.data.user[0];
+        displayUserData(user);
 
     } catch (error) {
         console.error('Error fetching user data:', error);
@@ -61,11 +72,20 @@ async function fetchUserData() {
     }
 }
 
-fetchUserData();
+// Display user data
+function displayUserData(user) {
+    const userDataDiv = document.getElementById('userData');
+    userDataDiv.innerHTML = `
+        <p>Username: ${user.login || 'N/A'}</p>
+        <p>Email: ${user.email || 'N/A'}</p>
+        <p>First Name: ${user.firstName || 'N/A'}</p>
+        <p>Last Name: ${user.lastName || 'N/A'}</p>
+        <p>Campus: ${user.campus || 'N/A'}</p>
+    `;
+}
 async function fetchAuditRatio() {
-    const jwt = localStorage.getItem('jwt').replace(/^"(.*)"$/, '$1');
+    const jwt = localStorage.getItem('jwt')?.replace(/^"(.*)"$/, '$1');
     if (!jwt) return;
-
     try {
         const query = `
             query {
@@ -75,7 +95,6 @@ async function fetchAuditRatio() {
             }
         `;
         console.log('Fetching audit data...');
-
         const response = await fetch('https://learn.reboot01.com/api/graphql-engine/v1/graphql', {
             method: 'POST',
             headers: {
@@ -84,28 +103,22 @@ async function fetchAuditRatio() {
             },
             body: JSON.stringify({ query }),
         });
-
         if (!response.ok) {
             throw new Error('Failed to fetch audit data');
         }
-
         const data = await response.json();
         console.log('Audit Data:', data);
-
         const auditTransactions = data.data.transaction;
         const totalAudits = auditTransactions.reduce((sum, t) => sum + t.amount, 0);
         const auditRatio = totalAudits > 0 ? (totalAudits / auditTransactions.length).toFixed(2) : 0;
         document.getElementById('auditData').innerText = `Audit Ratio: ${auditRatio}`;
-
     } catch (error) {
         console.error('Error fetching audit data:', error);
         document.getElementById('auditData').innerText = 'Failed to load audit data.';
     }
 }
-
-fetchAuditRatio();
 async function createXpGraph() {
-    const jwt = localStorage.getItem('jwt').replace(/^"(.*)"$/, '$1');
+    const jwt = localStorage.getItem('jwt')?.replace(/^"(.*)"$/, '$1');
     if (!jwt) return;
 
     try {
@@ -118,7 +131,6 @@ async function createXpGraph() {
             }
         `;
         console.log('Fetching XP data for graph...');
-
         const response = await fetch('https://learn.reboot01.com/api/graphql-engine/v1/graphql', {
             method: 'POST',
             headers: {
@@ -127,19 +139,20 @@ async function createXpGraph() {
             },
             body: JSON.stringify({ query }),
         });
-
         if (!response.ok) {
             throw new Error('Failed to fetch XP data for graph');
         }
-
         const data = await response.json();
         console.log('XP Data for Graph:', data);
-
         const xpTransactions = data.data.transaction;
         const labels = xpTransactions.map(t => new Date(t.createdAt).toLocaleDateString());
         const amounts = xpTransactions.map(t => t.amount);
-
-        const ctx = document.getElementById('xpGraph').getContext('2d');
+        const xpCanvas = document.getElementById('xpGraph');
+        console.log('XP Canvas:', xpCanvas); // Should log the <canvas> element
+        if (!xpCanvas) {
+            throw new Error('XP Canvas element not found!');
+        }
+        const ctx = xpCanvas.getContext('2d');
         new Chart(ctx, {
             type: 'line',
             data: {
@@ -165,5 +178,3 @@ async function createXpGraph() {
         document.getElementById('xpGraph').innerText = 'Failed to load XP graph.';
     }
 }
-
-createXpGraph();

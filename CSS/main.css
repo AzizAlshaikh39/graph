@@ -40,10 +40,9 @@ input {
   background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
   color: white;
 }
-
 /* Buttons */
 button {
-  width: 100%;
+  width: 10%;
   padding: 10px;
   margin: 10px 0;
   border: none;
@@ -71,4 +70,68 @@ button:hover {
   border-radius: 5px;
   padding: 10px;
   margin: 10px 0;
+}
+/* Navbar container */
+nav {
+  display: flex;
+  justify-content: space-between; /* Space between items */
+  align-items: center; /* Vertically center items */
+  padding: 10px 20px; /* Padding inside the navbar */
+  background-color: #2a2a40; /* Dark background */
+  color: white; /* White text */
+  position: fixed; /* Fixed at the top */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Ensure it's above other content */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Style for the "GraphQL" text */
+nav a {
+  font-size: 24px; /* Larger text */
+  font-weight: bold; /* Bold text */
+  text-decoration: none; /* Remove underline */
+  color: rgb(243, 5, 5); /* White text */
+  flex-grow: 1; /* Take up remaining space */
+  text-align: center; /* Center the text */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Hover effect for the "GraphQL" text */
+nav a:hover {
+  color: #007bff; /* Change color on hover */
+}
+
+/* Style for the logout button */
+nav button {
+  background-color: #f44336; /* Red button */
+  color: white; /* White text */
+  border: none; /* Remove border */
+  padding: 8px 16px; /* Smaller padding */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 14px; /* Smaller text */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+/* Hover effect for the logout button */
+nav button:hover {
+  background-color: #d32f2f; /* Darker red on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Active effect for the logout button */
+nav button:active {
+  transform: translateY(0); /* Reset lift effect when clicked */
+}
+
+/* Optional: Add a gradient background to the navbar for a modern look */
+nav {
+  background: linear-gradient(135deg, #2a2a40, #1a1a2e);
+}
+
+/* Optional: Add a border-bottom for a sleek separation */
+nav {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }

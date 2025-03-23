@@ -8,19 +8,18 @@
     <script src="BackJS/jquery-3.3.1.min.js"></script>
     <script src="BackJS/galaxy.js"></script>
     <script src="BackJS/freaky.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <canvas></canvas>
-    <div id="profile">
+    <nav>
+        <a>GraphQL</a>
+        <button onclick="logout()">Logout</button>
+    </nav>
+    <div id="profilePage">
         <div class="card">
             <h1>Profile</h1>
-            <button onclick="logout()">Logout</button>
-            <div id="userData">
-            </div>
-            <div id="xpData">
-            </div>
-            <div id="auditData">
-            </div>
+            <div id="userData"></div>
         </div>
     </div>
 
