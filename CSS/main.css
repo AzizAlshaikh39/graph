@@ -1,137 +1,184 @@
+/* Keep all your existing canvas and base styles */
 canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    background: black
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: black;
+}
+
 /* General styles */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   color: white;
-  overflow: hidden; /* Prevent scrolling */
+  overflow-x: hidden; /* Changed from hidden to allow vertical scrolling */
 }
 
-/* Card container */
-.card {
-  background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
-  border: 2px solid white; /* White border */
-  border-radius: 10px; /* Rounded corners */
+/* Login page specific styles */
+#login .card {
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid white;
+  border-radius: 10px;
   padding: 20px;
   max-width: 400px;
-  margin: 100px auto; /* Center the card */
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Glow effect */
+  margin: 100px auto;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+/* Login button specific style */
+#login button {
+  width: 100%; /* Changed from 10% to 100% */
+  padding: 12px;
+  margin: 15px 0;
+  border: none;
+  border-radius: 5px;
+  background: #4CAF50; /* Green color for login */
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+#login button:hover {
+  background: #45a049; /* Darker green on hover */
+}
+
+/* Profile page specific styles */
+#profilePage {
+  padding-top: 60px; /* Account for fixed nav */
+}
+
+.profile-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.profile-container .card {
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  margin: 20px 0;
 }
 
 /* Headings */
-h1 {
+h1, h2 {
   text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-top: 0;
 }
 
-/* Input fields */
-input {
+h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+/* Data containers */
+#userData, #auditData, #xpData {
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+/* Chart containers */
+.chart-container {
+  position: relative;
+  height: 300px;
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid white;
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
-  color: white;
-}
-/* Buttons */
-button {
-  width: 10%;
-  padding: 10px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 5px;
-  background: #007bff; /* Blue background */
-  color: white;
-  cursor: pointer;
+  margin: 20px 0;
 }
 
-button:hover {
-  background: #0056b3; /* Darker blue on hover */
+/* Navbar styles (keep your existing navbar styles) */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #2a2a40;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: rgb(243, 5, 5);
+  flex-grow: 1;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #007bff;
+}
+
+/* Logout button specific style */
+nav button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+nav button:hover {
+  background-color: #d32f2f;
+  transform: translateY(-2px);
+}
+
+nav button:active {
+  transform: translateY(0);
 }
 
 /* Error messages */
 .error {
-  color: #ff4444; /* Red color for errors */
+  color: #ff4444;
   text-align: center;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
-}
-
-/* Graph containers */
-.graph {
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
-  border: 1px solid white;
-  border-radius: 5px;
-  padding: 10px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   margin: 10px 0;
 }
-/* Navbar container */
-nav {
-  display: flex;
-  justify-content: space-between; /* Space between items */
-  align-items: center; /* Vertically center items */
-  padding: 10px 20px; /* Padding inside the navbar */
-  background-color: #2a2a40; /* Dark background */
-  color: white; /* White text */
-  position: fixed; /* Fixed at the top */
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000; /* Ensure it's above other content */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
 
-/* Style for the "GraphQL" text */
-nav a {
-  font-size: 24px; /* Larger text */
-  font-weight: bold; /* Bold text */
-  text-decoration: none; /* Remove underline */
-  color: rgb(243, 5, 5); /* White text */
-  flex-grow: 1; /* Take up remaining space */
-  text-align: center; /* Center the text */
-  transition: color 0.3s ease; /* Smooth color transition */
-}
-
-/* Hover effect for the "GraphQL" text */
-nav a:hover {
-  color: #007bff; /* Change color on hover */
-}
-
-/* Style for the logout button */
-nav button {
-  background-color: #f44336; /* Red button */
-  color: white; /* White text */
-  border: none; /* Remove border */
-  padding: 8px 16px; /* Smaller padding */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: 14px; /* Smaller text */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
-}
-
-/* Hover effect for the logout button */
-nav button:hover {
-  background-color: #d32f2f; /* Darker red on hover */
-  transform: translateY(-2px); /* Slight lift effect */
-}
-
-/* Active effect for the logout button */
-nav button:active {
-  transform: translateY(0); /* Reset lift effect when clicked */
-}
-
-/* Optional: Add a gradient background to the navbar for a modern look */
-nav {
-  background: linear-gradient(135deg, #2a2a40, #1a1a2e);
-}
-
-/* Optional: Add a border-bottom for a sleek separation */
-nav {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .profile-container {
+      flex-direction: column;
+      align-items: center;
+  }
+  
+  .profile-container .card {
+      max-width: 90%;
+  }
+  
+  nav a {
+      font-size: 20px;
+  }
+  
+  nav button {
+      padding: 8px 16px;
+  }
 }

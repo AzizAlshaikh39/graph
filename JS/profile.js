@@ -76,7 +76,7 @@ function displayUserData(user) {
     userDataDiv.innerHTML = `
         <div class="profile-header">
             <h2>${user.firstName || ''} ${user.lastName || ''}</h2>
-            <p class="username">@${user.login}</p>
+            <p class="username"><strong>Username:</strong>: ${user.login}</p>
         </div>
         <div class="profile-details">
             <p><strong>Email:</strong> ${user.email || 'N/A'}</p>
