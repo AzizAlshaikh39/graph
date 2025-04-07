@@ -1,4 +1,4 @@
-/* Keep all your existing canvas and base styles */
+/* Canvas background */
 canvas {
   position: fixed;
   top: 0;
@@ -7,75 +7,19 @@ canvas {
   background: black;
 }
 
-/* General styles */
+/* Global styles */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   color: white;
-  overflow-x: hidden; /* Changed from hidden to allow vertical scrolling */
-}
-
-/* Login page specific styles */
-#login .card {
-  background: rgba(0, 0, 0, 0.7);
-  border: 2px solid white;
-  border-radius: 10px;
-  padding: 20px;
-  max-width: 400px;
-  margin: 100px auto;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-}
-
-/* Login button specific style */
-#login button {
-  width: 100%; /* Changed from 10% to 100% */
-  padding: 12px;
-  margin: 15px 0;
-  border: none;
-  border-radius: 5px;
-  background: #4CAF50; /* Green color for login */
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-
-#login button:hover {
-  background: #45a049; /* Darker green on hover */
-}
-
-/* Profile page specific styles */
-#profilePage {
-  padding-top: 60px; /* Account for fixed nav */
-}
-
-.profile-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.profile-container .card {
-  background: rgba(0, 0, 0, 0.7);
-  border: 2px solid white;
-  border-radius: 10px;
-  padding: 20px;
-  width: 100%;
-  max-width: 500px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-  margin: 20px 0;
+  overflow-x: hidden;
 }
 
 /* Headings */
 h1, h2 {
   text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin-top: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 h1 {
@@ -88,7 +32,62 @@ h2 {
   margin-bottom: 15px;
 }
 
-/* Data containers */
+/* Login styles */
+#login .card {
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 400px;
+  margin: 100px auto;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+#login button {
+  width: 100%;
+  padding: 12px;
+  margin: 15px 0;
+  border: none;
+  border-radius: 5px;
+  background: #4CAF50;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+#login button:hover {
+  background: #45a049;
+}
+
+/* Profile layout */
+#profilePage {
+  padding-top: 60px;
+}
+
+.profile-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  margin: 20px auto;
+}
+
+/* Data blocks */
 #userData, #auditData, #xpData {
   padding: 15px;
   background: rgba(255, 255, 255, 0.1);
@@ -96,15 +95,71 @@ h2 {
   margin-bottom: 15px;
 }
 
-/* Chart containers */
-.chart-container {
-  position: relative;
-  height: 300px;
-  width: 100%;
-  margin: 20px 0;
+/* Skills display */
+.skills-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
 }
 
-/* Navbar styles (keep your existing navbar styles) */
+.skill-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background-color: transparent;
+  border-radius: 4px;
+}
+
+.skill-name {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.skill-amount {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+/* Chart bar styling */
+.chart-bar-container {
+  display: flex;
+  height: 20px;
+  background-color: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.bar {
+  height: 100%;
+  transition: width 0.5s;
+}
+
+.up-bar {
+  background-color: #4caf50;
+}
+
+.down-bar {
+  background-color: #f44336;
+}
+
+.chart-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  margin-top: 4px;
+}
+
+.up-label {
+  color: #4caf50;
+}
+
+.down-label {
+  color: #f44336;
+}
+
+/* Navbar */
 nav {
   display: flex;
   justify-content: space-between;
@@ -134,7 +189,6 @@ nav a:hover {
   color: #007bff;
 }
 
-/* Logout button specific style */
 nav button {
   background-color: #f44336;
   color: white;
@@ -155,30 +209,29 @@ nav button:active {
   transform: translateY(0);
 }
 
-/* Error messages */
+/* Error display */
 .error {
   color: #ff4444;
   text-align: center;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   margin: 10px 0;
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 768px) {
   .profile-container {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
-  
-  .profile-container .card {
-      max-width: 90%;
+
+  .card {
+    max-width: 90%;
   }
-  
+
   nav a {
-      font-size: 20px;
+    font-size: 20px;
   }
-  
+
   nav button {
-      padding: 8px 16px;
+    padding: 8px 16px;
   }
 }
